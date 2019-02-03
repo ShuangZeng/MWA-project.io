@@ -1,10 +1,11 @@
+const config = require('config');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const helmet = require('helmet')
-
+const mongoose = require("mongoose");
 var questions = require('./routes/questions');
 var users = require('./routes/users');
 
@@ -23,6 +24,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet())
+// if (!config.get('jwtPrivateKey')){
+//    console.error('FATAL ERROR: jwtPrivateKey is not defined')
+//    process.exit(1);
+// }
+// const connect = mongoose.connect("mongodb+srv://sysadmin:Admin2020@tutaappcluster-ho95w.mongodb.net/team4?retryWrites=true" ,{useNewUrlParser:true})
+// .then(()=> console.log("Connected to DB!"))
+// .catch(error => console.log("Couldnt connect to DB!", error.message));
+const mongooseConnect = require("./config/config");
+// mongooseConnect;
 
 app.use('/questions', questions);
 app.use('/users', users);
