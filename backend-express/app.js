@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 var questions = require('./routes/questions');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
-
+var cors = require('cors')
 var app = express();
 
 // view engine setup
@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors())
 app.use(helmet())
 // if (!config.get('jwtPrivateKey')){
 //    console.error('FATAL ERROR: jwtPrivateKey is not defined')
