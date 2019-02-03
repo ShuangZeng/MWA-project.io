@@ -15,9 +15,17 @@ router.post("/", async (req, res) =>  {
      if(!validPassword){
         return res.json({status: 400, message:"Invalid password"});
      }
+     if(!user.isActive){
+        return res.json({status: 400, message:"Inactive user"});
+
+     }
+
+     delete(user.password);
+     delete(user.dateCreated)
+
      const token = user.generateAuthToken();
      
-     return res.json({status: 200, message: token});
+     return res.json({status: 200, message: token, user:user});
 
 }); 
 
