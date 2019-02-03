@@ -8,7 +8,7 @@ var router = express.Router();
 const {User} = require('../model/user');
 
 /* GET users listing. */
-router.get('/', auth,async (req, res, next)=> {
+router.get('/',async (req, res, next)=> {
   const results = await User.find();
  
   res.json(results);
@@ -27,7 +27,7 @@ router.get('/role/:role',auth, async (req, res, next)=> {
 });
 
 
-router.post('/',auth, admin, async (req, res, next)=> {
+router.post('/',[auth, admin], async (req, res, next)=> {
 
   let user = await User.findOne({
     email:req.body.email

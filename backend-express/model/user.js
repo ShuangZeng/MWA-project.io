@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({}, { strict: false });
 
 userSchema.methods.generateAuthToken = function(){
-    const token = jwt.sign({_id: this._id, email: this.email},"jwtPrivateKey");
+    const token = jwt.sign({_id: this._id, email: this.email, isAdmin:this.isAdmin},"jwtPrivateKey");
     return token;
 
 }
