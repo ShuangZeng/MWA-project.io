@@ -4,23 +4,34 @@ import { Routes, RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-import { AppComponent } from './app.component';
 //alert module libs
 import { AlertModule } from 'ngx-alerts';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
- 
 
-// const routes: Routes = [
-//   { path: '', component: AppComponent }
-// ]
+import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component'
+import { StaffComponent } from './staff/staff.component'
+import { LoginPageComponent }from './login-page/login-page.component';
+import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
+const routes: Routes = [
+  {path: 'homex', component: AppComponent },
+  {path: '', component: LoginPageComponent},
+  {path: 'admin',  component: AdminComponent},
+  {path: 'staff', component: StaffComponent},
+  {path: '**', component: NoPageFoundComponent}
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdminComponent,
+    StaffComponent,
+    LoginPageComponent,
+    NoPageFoundComponent
   ],
   imports: [
     BrowserModule,
-    // RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
