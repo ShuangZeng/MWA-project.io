@@ -13,11 +13,19 @@ import { AdminComponent } from './admin/admin.component'
 import { StaffComponent } from './staff/staff.component'
 import { LoginPageComponent }from './login-page/login-page.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
+import { UsersComponent } from './admin/users/users.component';
+import { QuestionsComponent } from './admin/questions/questions.component';
+
+import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'
+
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
   {path: '', component: LoginPageComponent},
-  {path: 'admin',  component: AdminComponent},
-  {path: 'staff', component: StaffComponent},
+  {path: 'admin',  component: AdminComponent, children: [
+    { path: 'users', component: UsersComponent},
+    { path: 'questions', component: QuestionsComponent}
+    ],canActivate: [BLockPassGuardFlatService]},
+  {path: 'staff', component: StaffComponent,canActivate: [BLockPassGuardFlatService]},
   {path: '**', component: NoPageFoundComponent}
 ]
 
@@ -27,6 +35,8 @@ const routes: Routes = [
     AdminComponent,
     StaffComponent,
     LoginPageComponent,
+    UsersComponent,
+    QuestionsComponent,
     NoPageFoundComponent
   ],
   imports: [
@@ -39,7 +49,7 @@ const routes: Routes = [
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
 
   ],
-  providers: [],
+  providers: [BLockPassGuardFlatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
