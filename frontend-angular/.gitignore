@@ -7,10 +7,6 @@
 
 # dependencis
 node_modules
-e2e
-README.md
-tsconfig.json
-tslint.json
 
 
 # IDEs and editors
