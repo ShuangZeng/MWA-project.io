@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  public myForm: FormGroup; // our form model
+  constructor(private _fb: FormBuilder) { }
 
-  ngOnInit() {
-  }
+ngOnInit() {
+
+}
+
+initStudent() {
+  // initialize our items
+  return this._fb.group({
+      session: ['', Validators.required],
+      studentList: ['']
+  });
+}
+
+addStudent() {
+// add students to the list
+const control = <FormArray>this.myForm.controls['students'];
+control.push(this.initStudent());
+}
 
 }
