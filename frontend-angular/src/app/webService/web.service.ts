@@ -14,4 +14,12 @@ export class WebService {
     return this.http.post('http://localhost:3000/auth', user)
   }
 
+  getAllUsers(){
+    return this.http.get('http://localhost:3000/users/all/')
+  }
+  getUsersByRole(role){
+    return this.http.get('http://localhost:3000/users/role/',{params: role})
+  }
+
+ 
 }

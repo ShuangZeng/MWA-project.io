@@ -7,12 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { QuestionsComponent } from './questions/questions.component'
 
-import { AdminComponent }from './admin.component'
+import { AdminComponent }from './admin.component';
 const routes: Routes = [
   { path: '', component: AdminComponent},
   { path: 'users', component: UsersComponent},
   { path: 'questions', component: QuestionsComponent}
-
 ]
 
 @NgModule({
