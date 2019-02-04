@@ -3,19 +3,22 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { UsersComponent } from './users/users.component';
+import { QuestionsComponent } from './questions/questions.component'
 
-
-
-// const routes: Routes = [
-//   { path: '', component:  }
-// ]
+import { AdminComponent }from './admin.component';
+const routes: Routes = [
+  { path: '', component: AdminComponent},
+  { path: 'users', component: UsersComponent},
+  { path: 'questions', component: QuestionsComponent}
+]
 
 @NgModule({
-  declarations: [],
+  declarations: [UsersComponent, QuestionsComponent],
   imports: [
     CommonModule,
-    // RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
