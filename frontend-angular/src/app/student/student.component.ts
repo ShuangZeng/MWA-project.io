@@ -1,32 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
-
+import { TokenInterceptorService } from '../webService/token-interceptor.service';
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent implements OnInit {
+export class StudentComponent {
+  text:string = "";
+    options:any = {maxLines: 1000, printMargin: false};
 
-  public myForm: FormGroup; // our form model
-  constructor(private _fb: FormBuilder) { }
+    onChange(code) {
+        console.log("new code", code);
+    }
+//   private name: string;
+//   private token: string;
+//   // private time = 7200;
+//   constructor(private tokenService: TokenInterceptorService) {
+//   }
+// //   private p = document.getElementById('time');
+// //   private set = setInterval(function() {
+// //     time--;
+// //     p.innerHtml = time;
+// //     if(time === 0) {
+// //       p.innerHTML = "";
+// //       clearInterval(set);
+// //   }
+// // }, 1000);
+// ngOnInit() {
+//   this.token = this.tokenService.getToken();
+//   this.name = this.tokenService.getToken().charAt(2);
+// }
 
-ngOnInit() {
+// initStudent() {
+//   // initialize our items
+//   // return this._fb.group({
+//   //     session: ['', Validators.required],
+//   //     studentList: ['']
+//   // });
+// }
 
-}
-
-initStudent() {
-  // initialize our items
-  return this._fb.group({
-      session: ['', Validators.required],
-      studentList: ['']
-  });
-}
-
-addStudent() {
-// add students to the list
-const control = <FormArray>this.myForm.controls['students'];
-control.push(this.initStudent());
-}
+// addStudent() {
+// // add students to the list
+// }
 
 }

@@ -1,25 +1,26 @@
-<head>
-  <link rel="stylesheet" type="text/css" href="student.component.css">
-  <script src="http://cdn.bootcss.com/ace/1.2.4/ace.js"></script>
-<script src="http://cdn.bootcss.com/ace/1.2.4/ext-language_tools.js"></script>
-<script src="http://cdn.bootcss.com/ace/1.2.4/ext-old_ie.js"></script>
-<script src="http://cdn.bootcss.com/ace/1.2.4/theme-monokai.js"></script>
-</head>
-  <div><label>Time Left: {{leftTime}}</label></div>
+
+  <div><label id='time'>Time Left: {{time}}</label></div>
   <div>Welcome:{{name}}</div>
   <div><textarea disabled="disabled">{{questions}}</textarea></div>
-  <div><textarea id="editor"></textarea></div>
+  <div ace-editor
+       [(text)]="text"
+       [mode]="'sql'"
+       [theme]="'eclipse'"
+       [options]="options"
+       [readOnly]="false"
+       [durationBeforeCallback]="1000"
+       (textChanged)="onChange($event)"
+       style="min-height: 200px; width:100%; overflow: auto;"></div>
   <div><button>Submit</button></div>
-  <script>require("ace/ext/old_ie");
-    ace.require("ace/ext/language_tools");
-    var editor = ace.edit("compile-editor");
-    editor.$blockScrolling = Infinity;
-    editor.setFontSize(16);
-    editor.session.setMode("ace/mode/c_cpp");
-    editor.setOptions({
-        enableBasicAutocompletion: true,
-        enableSnippets: true,
-        enableLiveAutocompletion: true
-    });
-    editor.setTheme("ace/theme/monokai");
- </script>
+ <!-- <script>
+ let time = 7200;
+    let p = document.getElementsById("time");
+    let set = setInterval(function() {
+        time--;
+        p.innerHTML = time;
+        if(time === 0) {
+            p.innerHTML = "";
+            clearInterval(set);
+        }
+    }, 1000);
+ </script> -->
