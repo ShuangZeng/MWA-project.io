@@ -11,6 +11,8 @@ var users = require('./routes/users');
 var auth = require('./routes/auth');
 var cors = require('cors')
 var app = express();
+require('dotenv').config({path: path.join(__dirname, '.env')});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

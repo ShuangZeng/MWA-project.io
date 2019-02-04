@@ -21,5 +21,12 @@ export class WebService {
     return this.http.get('http://localhost:3000/users/role/',{params: role})
   }
 
+  updateIsActivestatusByUserId(id,body){
+    const obj = {isActive: body}
+    return this.http.patch(`http://localhost:3000/users/${id}`, obj)
+  }
  
+  findByIdAndRemove(id){
+    return this.http.delete(`http://localhost:3000/users/${id}`)
+  }
 }
