@@ -51,7 +51,6 @@ export class LoginPageComponent {
     })
   }
 
-
 getEmail() {
   return this.myForm.get('loginData').get('email').value
 }
