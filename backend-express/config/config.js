@@ -5,4 +5,5 @@ const connect = mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process
 .then(()=> console.log("Connected to DB!"))
 .catch(error => console.log("Couldnt connect to DB!", error.message));
 
+
 module.exports = connect;

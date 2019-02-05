@@ -13,11 +13,14 @@ import { AdminComponent } from './admin/admin.component'
 import { StaffComponent } from './staff/staff.component'
 import { LoginPageComponent }from './login-page/login-page.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
+import { StudentService } from './webService/staff.service';
+import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
   {path: '', component: LoginPageComponent},
   {path: 'admin',  component: AdminComponent},
   {path: 'staff', component: StaffComponent},
+  {path: 'passwordlessAuth/:token/:userid', component: PasswordlessAuthComponent},
   {path: '**', component: NoPageFoundComponent}
 ]
 
@@ -27,7 +30,8 @@ const routes: Routes = [
     AdminComponent,
     StaffComponent,
     LoginPageComponent,
-    NoPageFoundComponent
+    NoPageFoundComponent,
+    PasswordlessAuthComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ const routes: Routes = [
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
 
   ],
-  providers: [],
+  providers: [StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
