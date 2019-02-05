@@ -43,19 +43,24 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th> isActive </th>
+                      <th> Review Test </th>
+                      <th> Test Results </th>
                       <th> Actions </th>
-                    </tr>
+                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let human of bindedlist; let num = index">
+                    <tr *ngFor="let human of students; let num = index">
                       <td> {{num+1}}  </td>
                       <td>  {{human.name}} </td>
                       <td>   {{human.email}} </td>
                       <td> <mat-slide-toggle [checked]="human.isActive" (change)="onStatusChange($event,human)"> </mat-slide-toggle>
                            </td>
+                           <td>   review test </td>
+                           <td>   test result </td>
                       <td> <i class="fas fa-trash" (click)="onDelete(human)"> </i> &nbsp;
                            <i class="far fa-edit"></i>  &nbsp;
                       </td>
+
                     </tr>
                   </tbody>
                 </table>

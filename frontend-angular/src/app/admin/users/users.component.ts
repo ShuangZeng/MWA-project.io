@@ -13,7 +13,6 @@ import { StudentDialogComponent } from './student-dialog/student-dialog.componen
 export class UsersComponent implements OnInit {
   private tabIndex: number=0 ;
   private allusers: any;
-  private bindedlist;
   private staff;
   private students;
   private dialogRef;
@@ -25,7 +24,6 @@ export class UsersComponent implements OnInit {
       this.allusers = data
       this.staff = this.allusers.filter(this.isStaff);
       this.students = this.allusers.filter(this.isStudent)
-      this.renderThisbindedlist(this.tabIndex);
     })
   }
 
@@ -76,9 +74,7 @@ export class UsersComponent implements OnInit {
   }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent) {
-    this.renderThisbindedlist(tabChangeEvent.index);
     this.tabIndex = tabChangeEvent.index;
-    
   }
 
   openDialog() {
@@ -111,13 +107,4 @@ export class UsersComponent implements OnInit {
 
   }
 
-
-renderThisbindedlist(index){
-  this.bindedlist = [];
-  if(index == 0){
-    this.bindedlist = this.staff;
-  }else{
-    this.bindedlist = this.students;
-  }
-}
 }
