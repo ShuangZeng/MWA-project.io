@@ -14,7 +14,6 @@ export class PasswordlessAuthComponent implements OnInit {
   private sub: any
   constructor(private route: ActivatedRoute, private studentAuthService: WebService, private communicator: CommunicatorService, private router: Router) { }
 
-
   ngOnInit() {
   }
 
