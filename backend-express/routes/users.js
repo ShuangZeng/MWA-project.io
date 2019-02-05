@@ -23,6 +23,7 @@ router.get('/',async (req, res, next)=> {
   res.json(results);
 });
 
+
 router.get('/:id',auth,  async (req, res, next)=> {
   const results = await User.findById({ _id: req.params.id});
  

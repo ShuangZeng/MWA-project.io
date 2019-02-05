@@ -21,7 +21,6 @@ import { QuestionsComponent } from './admin/questions/questions.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule,MatSlideToggleModule} from '@angular/material';
 
-
 import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './webService/token-interceptor.service';
