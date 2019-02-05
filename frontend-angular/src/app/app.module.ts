@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 //alert module libs
 import { AlertModule } from 'ngx-alerts';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule, MatSlideToggleModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component'
@@ -17,6 +17,7 @@ import { UsersComponent } from './admin/users/users.component';
 import { QuestionsComponent } from './admin/questions/questions.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule} from '@angular/material';
+
 
 import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -50,7 +51,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatTabsModule,MatFormFieldModule,
+    MatButtonModule, MatCheckboxModule,MatTabsModule,MatFormFieldModule,MatSlideToggleModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
 
   ],
