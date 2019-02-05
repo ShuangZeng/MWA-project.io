@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StudentAuthService } from '../webService/studentAuth-service';
 
 @Component({
   selector: 'app-passwordless-auth',
@@ -10,20 +11,38 @@ export class PasswordlessAuthComponent implements OnInit {
 usertoken :string
 userid :string
 private sub : any
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private studentAuthService:StudentAuthService, private router: Router) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.usertoken = params['token']; // (+) converts string 'id' to a number
-      this.userid = params['userid']; 
-      console.log(this.usertoken)
-      console.log(this.userid)
 
-      // In a real app: dispatch action to load the details here.
-   });
 
    
 
+  }
+
+  startExam(){
+    this.sub = this.route.params.subscribe(params => {
+      this.usertoken = params['token']; // (+) converts string 'id' to a number
+    
+
+     const response =  this.studentAuthService.authStudent({'usertoken':this.usertoken})
+      response.subscribe((data:any)=> {
+        if (data.status === 400){
+          // localStorage.removeItem('usertoken');
+          console.log(data)
+         
+          this.router.navigate(['/','/']);  
+        }else{
+          this.router.navigate(['/','student']); 
+        } 
+        
+          
+      },
+      (error)=> console.log(error));
+
+
+      // In a real app: dispatch action to load the details here.
+   });
   }
 
 }

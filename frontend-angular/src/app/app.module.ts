@@ -12,7 +12,8 @@ import { AdminComponent } from './admin/admin.component'
 import { StaffComponent } from './staff/staff.component'
 import { LoginPageComponent }from './login-page/login-page.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
-import { StudentService } from './webService/staff.service';
+import { StaffService } from './webService/staff.service';
+import { StudentAuthService } from './webService/studentAuth-service';
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
 
   
@@ -24,6 +25,7 @@ import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule} f
 import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './webService/token-interceptor.service';
+import { StudentComponent } from './student/student.component';
 
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
@@ -33,7 +35,8 @@ const routes: Routes = [
     { path: 'questions', component: QuestionsComponent}
     ],canActivate: [BLockPassGuardFlatService]},
   {path: 'staff', component: StaffComponent,canActivate: [BLockPassGuardFlatService]},
-  {path: 'passwordlessAuth/:token/:userid', component: PasswordlessAuthComponent},
+  {path: 'passwordlessAuth/:token', component: PasswordlessAuthComponent},
+  {path: 'student', component: StudentComponent },
   {path: '**', component: NoPageFoundComponent}
 ]
 
@@ -47,6 +50,7 @@ const routes: Routes = [
     PasswordlessAuthComponent,
     UsersComponent,
     QuestionsComponent,
+    StudentComponent,
     NoPageFoundComponent
   ],
   imports: [
@@ -61,7 +65,7 @@ const routes: Routes = [
 
   ],
 
-  providers: [StudentService,BLockPassGuardFlatService, {
+  providers: [StaffService,StudentAuthService,BLockPassGuardFlatService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

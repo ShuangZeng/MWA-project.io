@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {StudentService} from '../webService/staff.service'
+import {StaffService} from '../webService/staff.service'
 import { useAnimation } from '@angular/animations';
 
 @Component({
@@ -9,12 +9,12 @@ import { useAnimation } from '@angular/animations';
 })
 export class StaffComponent implements OnInit {
 
-  constructor(private studentService:StudentService) { }
+  constructor(private staffService:StaffService) { }
   
   users :object
 
   ngOnInit() {
-    this.studentService.getUsers()
+    this.staffService.getUsers()
     .subscribe((response) => this.users = response,
     (error) => console.log(error) );
     
@@ -22,7 +22,7 @@ export class StaffComponent implements OnInit {
   
   sendMail(user){
     console.log(user)
-    this.studentService.updateUser(user)
+    this.staffService.updateUser(user)
     .subscribe((response) => console.log(response),
     (error) => console.log(error) );
   }

@@ -71,13 +71,15 @@ router.patch('/student/:id', async (req, res, next)=> {
  
  User.update({'_id': req.params.id},{$set : req.body}, function(error, results){
   var email = req.body.email;
-  var userID = req.params.id;
+  var name = req.body.name
   User.findOne({email:email}, (err,user)=>{
            
            const token = user.generateAuthToken();
            let to = email;
            let subject  = "Programming TEST!";
            let mail = `<h1>Congratulations!!</h1>
+
+           <h3>Dear ${name}</h3>
              <p>You  are required to take a 2 hours 3 questions programming test,</p>
              <p>by passing this test you will  be accepted at this university based on the results fo the test.
              click on the link below to take your test  </p>
@@ -87,7 +89,7 @@ router.patch('/student/:id', async (req, res, next)=> {
                  <table cellspacing="0" cellpadding="0">
                      <tr>
                          <td style="border-radius: 2px;" bgcolor="#ED2939">
-                             <a href="http://localhost:4200/passwordlessAuth/${token}/${userID}" target="_blank" style="padding: 8px 12px; border: 1px solid #ED2939;border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block;">
+                             <a href="http://localhost:4200/passwordlessAuth/${token}" target="_blank" style="padding: 8px 12px; border: 1px solid #ED2939;border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block;">
                                  Click here to take the test!            
                              </a>
                          </td>

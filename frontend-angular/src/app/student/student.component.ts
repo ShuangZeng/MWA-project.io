@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
-  }
+    
+    let token = JSON.parse(localStorage.getItem('usertoken'));
+    if(!token){
+      this.router.navigate(['/','/']); 
+    }
+
+    setTimeout( function(){
+
+      localStorage.removeItem('usertoken');
+
+  }, 20000 * 60)    }
+
+  
 
 }

@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 var questions = require('./routes/questions');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var students = require('./routes/passwordlessAuth')
 var cors = require('cors')
 var app = express();
 
@@ -39,6 +40,7 @@ const mongooseConnect = require("./config/config");
 app.use('/questions', questions);
 app.use('/users', users);
 app.use('/auth',auth );
+app.use('/student',students );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
