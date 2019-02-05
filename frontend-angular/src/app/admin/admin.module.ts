@@ -8,6 +8,8 @@ import { UsersComponent } from './users/users.component';
 import { QuestionsComponent } from './questions/questions.component'
 
 import { AdminComponent }from './admin.component';
+import { StaffDialogComponent } from './users/staff-dialog/staff-dialog.component';
+
 const routes: Routes = [
   { path: '', component: AdminComponent},
   { path: 'users', component: UsersComponent},
@@ -15,7 +17,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, QuestionsComponent],
+  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),

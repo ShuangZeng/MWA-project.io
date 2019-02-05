@@ -1,11 +1,10 @@
 import { Component, OnInit, Pipe} from '@angular/core';
 import { WebService } from '../../webService/web.service';
-import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatSlideToggleChange, MatSlideToggle,MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatDialogConfig } from '@angular/material';
 import { Subscriber, Subscription } from 'rxjs';
 import { AlertService } from 'ngx-alerts';
-
-@Component({
+import { StaffDialogComponent } from './staff-dialog/staff-dialog.component'
+ @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
@@ -14,7 +13,7 @@ export class UsersComponent implements OnInit {
 private allusers:any;
 private staff;
 private students;
-  constructor(private webService: WebService,private alertService: AlertService) { }
+  constructor(private webService: WebService,private alertService: AlertService,private dialog: MatDialog) { }
 private subscription: Subscription;
   ngOnInit() {
      this.subscription = this.webService.getAllUsers().subscribe((data)=>{
@@ -67,4 +66,29 @@ private subscription: Subscription;
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
+
+  openStaffDialog() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+  //   dialogConfig.data = {
+  //     id: 1,
+  //     title: 'Angular For Beginners'
+  // };   
+  
+  const dialogRef = this.dialog.open(StaffDialogComponent, dialogConfig);
+
+  dialogRef.afterClosed().subscribe(
+      (data) => {
+        this.alertService.info(`${data.name} has been added`);
+        this.ngOnInit();
+      } 
+      //  console.log("Dialog output:", data)
+  );
+
+}
+
 }

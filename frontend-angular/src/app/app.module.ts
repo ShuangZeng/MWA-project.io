@@ -15,16 +15,16 @@ import { LoginPageComponent }from './login-page/login-page.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
 import { StudentService } from './webService/staff.service';
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
-
   
 import { UsersComponent } from './admin/users/users.component';
 import { QuestionsComponent } from './admin/questions/questions.component';
-import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule,MatSlideToggleModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule,MatSlideToggleModule,MatDialogModule,MatInputModule, MatSelectModule, MatFormFieldControl, MatIconModule} from '@angular/material';
 
 import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './webService/token-interceptor.service';
 
+import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component'
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
   {path: '', component: LoginPageComponent},
@@ -47,7 +47,8 @@ const routes: Routes = [
     PasswordlessAuthComponent,
     UsersComponent,
     QuestionsComponent,
-    NoPageFoundComponent
+    NoPageFoundComponent,
+    StaffDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,MatTabsModule,MatFormFieldModule,MatSlideToggleModule,
+    MatDialogModule,MatInputModule, MatSelectModule,MatIconModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
 
   ],
@@ -66,6 +68,7 @@ const routes: Routes = [
     useClass: TokenInterceptorService,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [StaffDialogComponent]
 })
 export class AppModule { }

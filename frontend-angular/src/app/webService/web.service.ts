@@ -29,4 +29,9 @@ export class WebService {
   findByIdAndRemove(id){
     return this.http.delete(`http://localhost:3000/users/${id}`)
   }
+  addStaffMember(_obj){
+    const obj = _obj.addDialog;
+    return this.http.post('http://localhost:3000/users/',obj);
+  }
+
 }
