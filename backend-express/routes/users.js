@@ -59,7 +59,7 @@ router.post('/', async (req, res, next)=> {
   
 });
 
-router.delete('/',auth, admin, async (req, res, next)=> {
+router.delete('/',auth, async (req, res, next)=> {
   const results = await User.findByIdAndRemove(req.body);
  
   res.json(results);
