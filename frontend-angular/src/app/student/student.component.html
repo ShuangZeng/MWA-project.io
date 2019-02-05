@@ -1,20 +1,12 @@
 
   <div><label id='time'>Time Left: {{time}}</label></div>
-  <div>Welcome:{{studentData.name}}</div>
+  <div>Welcome: {{studentData.name}}</div>
   <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <dl>
                     <dt>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                      Question : {{}}  
-=======
-                        Description lists
->>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
-=======
-                        Description lists
->>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
+                      Question: {{currentQuestion.question}}
                     </dt>
                 </dl>
             </div>
@@ -30,16 +22,10 @@
        [durationBeforeCallback]="1000"
        (textChanged)="onChange($event)"
        style="min-height: 200px; width:100%; overflow: auto;"></div>
-  <div><button>Submit</button></div>
- <!-- <script>
- let time = 7200;
-    let p = document.getElementsById("time");
-    let set = setInterval(function() {
-        time--;
-        p.innerHTML = time;
-        if(time === 0) {
-            p.innerHTML = "";
-            clearInterval(set);
-        }
-    }, 1000);
- </script> -->
+
+       <div class="container-fluid">
+            <button (click)="nextQuestion()">Next</button>
+                            <button *ngIf="currentQuestionIndex==numOfQuestion" >Submit</button>
+        </div>
+  
+

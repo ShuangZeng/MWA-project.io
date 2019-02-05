@@ -21,6 +21,6 @@ export class TokenInterceptorService implements HttpInterceptor{
   }
 
    public getToken(): string {
-    return JSON.parse(localStorage.getItem('usertoken'));
+    return localStorage.getItem('usertoken');
   }
 }

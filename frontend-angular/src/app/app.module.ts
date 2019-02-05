@@ -28,7 +28,7 @@ import { CommunicatorService } from './webService/communicator.service';
 
 import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component';
 import { StudentDialogComponent } from './admin/users/student-dialog/student-dialog.component'
-
+import { WebService } from './webService/web.service'
 
 import { ReviewTestDirective } from './admin/users/review-test-dialog/review-test.directive';
 import { ReviewTestDialogComponent } from './admin/users/review-test-dialog/review-test-dialog.component';
@@ -88,7 +88,7 @@ const routes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  },
+  },WebService,
   CommunicatorService],
   bootstrap: [AppComponent],
   entryComponents: [StaffDialogComponent,StudentDialogComponent,ReviewTestDialogComponent,AddQuestionDialogComponent],

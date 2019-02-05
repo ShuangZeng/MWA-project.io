@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebService } from '../webService/web.service';
+import { CommunicatorService } from '../webService/communicator.service';
 
 @Component({
   selector: 'app-passwordless-auth',
@@ -8,38 +9,35 @@ import { WebService } from '../webService/web.service';
   styleUrls: ['./passwordless-auth.component.css']
 })
 export class PasswordlessAuthComponent implements OnInit {
-usertoken :string
-userid :string
-private sub : any
-  constructor(private route: ActivatedRoute, private studentAuthService:WebService, private router: Router) { }
+  usertoken: string
+  userid: string
+  private sub: any
+  constructor(private route: ActivatedRoute, private studentAuthService: WebService, private communicator: CommunicatorService, private router: Router) { }
 
 
   ngOnInit() {
   }
 
-  startExam(){
+  startExam() {
     this.sub = this.route.params.subscribe(params => {
       this.usertoken = params['token']; // (+) converts string 'id' to a number
-    
-
-     const response =  this.studentAuthService.authStudent({'usertoken':this.usertoken})
-      response.subscribe((data:any)=> {
-        if (data.status === 400){
-          // localStorage.removeItem('usertoken');
-          console.log(data)
-         
-          this.router.navigate(['/','/']);  
-        }else{
-          this.router.navigate(['/','student']); 
-        } 
-        
-          
-      },
-      (error)=> console.log(error));
 
 
-      // In a real app: dispatch action to load the details here.
-   });
+      this.studentAuthService.authStudent({ 'usertoken': this.usertoken }).
+        subscribe((data: any) => {
+          if (data.status == 200) {
+            localStorage.setItem('usertoken',this.usertoken);
+            this.communicator.serviceData = data.message;
+            console.log(data)
+            this.router.navigate(['/', 'student']);
+          } else {
+            this.router.navigate(['/', '/']);
+          }
+
+
+        });
+    });
+
   }
 
 }
