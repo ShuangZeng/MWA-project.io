@@ -7,6 +7,14 @@ const bcrypt = require("bcryptjs");
 var router = express.Router();
 const {User} = require('../model/user');
 
+//get all (staff,student) users
+router.get('/all',auth, async (req, res, next)=> {
+  console.log('all')
+  const results = await User.find({}).where('role').ne(['admin']);
+ 
+  res.json(results);
+});
+
 /* GET users listing. */
 router.get('/',async (req, res, next)=> {
   const results = await User.find();
@@ -19,6 +27,8 @@ router.get('/:id',auth,  async (req, res, next)=> {
  
   res.json(results);
 });
+
+
 
 router.get('/role/:role',auth, async (req, res, next)=> {
   const results = await User.find({}).where('role').in([req.params.role]);
@@ -57,16 +67,16 @@ router.post('/',[auth, admin], async (req, res, next)=> {
   
 });
 
-router.delete('/',auth, admin, async (req, res, next)=> {
-  const results = await User.findByIdAndRemove(req.body);
- 
-  res.json(results);
+router.delete('/:id',auth, admin, async (req, res, next)=> {
+  const results = await User.findByIdAndRemove(req.param.id);
+  res.json({status:200, message: results});
 });
 
 router.patch('/:id', async (req, res, next)=> {
+
   const results = await User.update({'_id': req.params.id},{$set : req.body});
  
-  res.json(results);
+  res.json({status:200, message: results});
 });
 
 module.exports = router;
