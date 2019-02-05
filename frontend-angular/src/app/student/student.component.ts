@@ -24,7 +24,6 @@ export class StudentComponent implements OnInit {
 
   }
 
-
   ngOnInit() {
     const token = localStorage.getItem('usertoken');
     if (!token) {
@@ -46,7 +45,7 @@ export class StudentComponent implements OnInit {
   nextQuestion() {
     if(++this.currentQuestionIndex <= this.numOfQuestion){
       this.currentQuestion =  this.questions[this.currentQuestionIndex];
-    }
+    } 
   }
 
   onChange(code) {
