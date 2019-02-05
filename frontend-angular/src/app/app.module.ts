@@ -1,35 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router'
-import { ReactiveFormsModule } from '@angular/forms'
-import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
-//alert module libs
+import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AlertModule } from 'ngx-alerts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { StaffComponent } from './staff/staff.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AceEditorModule } from '../../node_modules/ng2-ace-editor';
 import { AdminComponent } from './admin/admin.component'
-import { StaffComponent } from './staff/staff.component'
-import { LoginPageComponent }from './login-page/login-page.component';
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
 import { StaffService } from './webService/staff.service';
 import { StudentAuthService } from './webService/studentAuth-service';
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
 
-  
+
 import { UsersComponent } from './admin/users/users.component';
 import { QuestionsComponent } from './admin/questions/questions.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule,MatSlideToggleModule,MatDialogModule,MatInputModule, MatSelectModule, MatFormFieldControl, MatIconModule} from '@angular/material';
 
 import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './webService/token-interceptor.service';
 import { StudentComponent } from './student/student.component';
+import { CommunicatorService } from './webService/communicator.service';
+
+
+import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component';
+import { StudentDialogComponent } from './admin/users/student-dialog/student-dialog.component'
+
+import { ReviewTestDirective } from './admin/users/review-test-dialog/review-test.directive';
+import { ReviewTestDialogComponent } from './admin/users/review-test-dialog/review-test-dialog.component';
+
 
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
   {path: '', component: LoginPageComponent},
+  {path: 'student', component: StudentComponent},
   {path: 'admin',  component: AdminComponent, children: [
     { path: 'users', component: UsersComponent},
     { path: 'questions', component: QuestionsComponent}
@@ -38,7 +49,7 @@ const routes: Routes = [
   {path: 'passwordlessAuth/:token', component: PasswordlessAuthComponent},
   {path: 'student', component: StudentComponent },
   {path: '**', component: NoPageFoundComponent}
-]
+];
 
 @NgModule({
   declarations: [
@@ -51,7 +62,13 @@ const routes: Routes = [
     UsersComponent,
     QuestionsComponent,
     StudentComponent,
-    NoPageFoundComponent
+    NoPageFoundComponent,
+    StaffDialogComponent,
+    StudentDialogComponent,
+    StudentComponent,
+    NoPageFoundComponent,
+    ReviewTestDirective,
+    ReviewTestDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +77,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,MatTabsModule,MatFormFieldModule,
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
+    AceEditorModule,
+    MatButtonModule, MatCheckboxModule , MatTabsModule, MatFormFieldModule,MatSlideToggleModule,
+    MatDialogModule,MatInputModule, MatSelectModule,MatIconModule,
+     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
 
   ],
 
@@ -69,7 +88,9 @@ const routes: Routes = [
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }],
-  bootstrap: [AppComponent]
+  },
+  CommunicatorService],
+  bootstrap: [AppComponent],
+  entryComponents: [StaffDialogComponent,StudentDialogComponent,ReviewTestDialogComponent]
 })
 export class AppModule { }

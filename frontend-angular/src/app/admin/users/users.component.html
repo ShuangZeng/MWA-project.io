@@ -1,48 +1,29 @@
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="tabChanged($event)">
   <mat-tab label="Staff" >
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <div> <i class="sign fa fa-plus-square fa-2x" aria-hidden="true"></i> </div>
+          <div> <i class="sign fa fa-plus-square fa-2x" aria-hidden="true" (click)="openDialog()"></i> </div>
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th> Status </th>
+                <th> isActive </th>
+                <th> Actions </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td> 1  </td>
-                <td>  TB - Monthly </td>
-                <td>   01/04/2012 </td>
-                <td> Default </td>
-              </tr>
-              <tr class="table-active">
-                <td>    1  </td>
-                <td>  TB - Monthly </td>
-                <td>  01/04/2012 </td>
-                <td> Approved </td>
-              </tr>
-              <tr class="table-success">
-                <td>   2 </td>
-                <td>    TB - Monthly </td>
-                <td>  02/04/2012  </td>
-                <td>   Declined  </td>
-              </tr>
-              <tr class="table-warning">
-                <td>    3  </td>
-                <td> TB - Monthly </td>
-                <td> 03/04/2012  </td>
-                <td>  Pending</td>
-              </tr>
-              <tr class="table-danger">
-                <td>   4    </td>
-                <td> TB - Monthly </td>
-                <td>   04/04/2012  </td>
-                <td> Call in to confirm</td>
+              <tr *ngFor="let human of staff; let num = index">
+                <td> {{num+1}}  </td>
+                <td>  {{human.name}} </td>
+                <td>   {{human.email}} </td>
+                <td> <mat-slide-toggle [checked]="human.isActive" (change)="onStatusChange($event,human)"> </mat-slide-toggle>
+                     </td>
+                <td> <i class="fas fa-trash" (click)="onDelete(human)"> </i> &nbsp;
+                     <i class="far fa-edit"></i>  &nbsp;
+                </td>
               </tr>
             </tbody>
           </table>
@@ -50,5 +31,39 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Student"> Content 2 </mat-tab>
+  <mat-tab label="Student">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div> <i class="sign fa fa-plus-square fa-2x" aria-hidden="true" (click)="openDialog()"></i> </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th> isActive </th>
+                      <th> Test Status </th>
+                      <th> Actions </th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let human of students; let num = index">
+                      <td> {{num+1}}  </td>
+                      <td>  {{human.name}} </td>
+                      <td>   {{human.email}} </td>
+                      <td> <mat-slide-toggle [checked]="human.isActive" (change)="onStatusChange($event,human)"> </mat-slide-toggle>
+                           </td>
+                           <td><button class="btn btn-info" (click)="openReviewTestDialog(human)" [appReviewTest]="human.status">{{human.status}}</button></td>
+                      <td> <i class="fas fa-trash" (click)="onDelete(human)"> </i> &nbsp;
+                           <i class="far fa-edit"></i>  &nbsp;
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </mat-tab>
 </mat-tab-group>

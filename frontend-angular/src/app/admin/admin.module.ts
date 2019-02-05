@@ -8,6 +8,14 @@ import { UsersComponent } from './users/users.component';
 import { QuestionsComponent } from './questions/questions.component'
 
 import { AdminComponent }from './admin.component';
+import { StaffDialogComponent } from './users/staff-dialog/staff-dialog.component';
+import { StudentDialogComponent } from './users/student-dialog/student-dialog.component';
+
+import { AlertModule } from 'ngx-alerts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ReviewTestDialogComponent } from './users/review-test-dialog/review-test-dialog.component';
+import { ReviewTestDirective } from './users/review-test-dialog/review-test.directive';
+
 const routes: Routes = [
   { path: '', component: AdminComponent},
   { path: 'users', component: UsersComponent},
@@ -15,13 +23,18 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, QuestionsComponent],
+  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent, StudentDialogComponent, ReviewTestDialogComponent, ReviewTestDirective],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ]
+    HttpClientModule,
+    AlertModule,
+    BrowserAnimationsModule,
+    ReviewTestDirective
+  ],
+  providers: []
 })
 export class AdminModule { }
+

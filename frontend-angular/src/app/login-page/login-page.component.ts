@@ -47,9 +47,9 @@ export class LoginPageComponent {
       }else{
         this.alertService.warning(data.message);
       }
+      
     })
   }
-
 
 getEmail() {
   return this.myForm.get('loginData').get('email').value

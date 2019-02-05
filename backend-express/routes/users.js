@@ -8,6 +8,14 @@ var router = express.Router();
 const {User} = require('../model/user');
 const sendMail = require('../config/sendMail')
 
+//get all (staff,student) users
+router.get('/all',auth, async (req, res, next)=> {
+  console.log('all')
+  const results = await User.find({}).where('role').ne(['admin']);
+ 
+  res.json(results);
+});
+
 /* GET users listing. */
 router.get('/',async (req, res, next)=> {
   const results = await User.find();
@@ -15,11 +23,14 @@ router.get('/',async (req, res, next)=> {
   res.json(results);
 });
 
+
 router.get('/:id',auth,  async (req, res, next)=> {
   const results = await User.findById({ _id: req.params.id});
  
   res.json(results);
 });
+
+
 
 router.get('/role/:role',auth, async (req, res, next)=> {
   const results = await User.find({}).where('role').in([req.params.role]);
@@ -36,7 +47,7 @@ router.post('/', async (req, res, next)=> {
   })
 
   if(user){
-    return res.status(400).json("User alredy Registerd");
+    return res.json({status: 400, message:"User alredy Registerd"});
   };
 
   const tmp = req.body
@@ -45,29 +56,40 @@ router.post('/', async (req, res, next)=> {
    
   if (req.body.isStudent === true){
     record = await record.save(); 
-    res.json(record);
+    return res.json({status: 200, record: record});
   }
 
 
-  const salt = await bcrypt.genSalt(10);
-  record.password = await bcrypt.hash(record.password, salt);
-  record = await record.save(); 
+  try {
+    const salt = await bcrypt.genSalt(10);
+    record.password = await bcrypt.hash(record.password, salt);
+    record = await record.save(); 
+  } catch (e) {
+    console.log('Error Occured - post-users api', e)
+  }
+
 
   const token =  record.generateAuthToken();
-  res.header("x-auth-token", token).json(record);
+  res.header("x-auth-token", token).json({status: 200, record: record});
 
   
 });
 
-router.delete('/',auth, async (req, res, next)=> {
-  const results = await User.findByIdAndRemove(req.body);
+router.delete('/:id',auth, async (req, res, next)=> {
+  const results = await User.findByIdAndRemove(req.params.id);
  
-  res.json(results);
+  res.json({status:200, message: results});
+});
+
+router.patch('/:id', async (req, res, next)=> {
+
+  const results = await User.update({'_id': req.params.id},{$set : req.body});
+ 
+  res.json({status:200, message: results});
 });
 
 router.patch('/student/:id', async (req, res, next)=> {
    ///for testing (works-- now need to pass value from Angula app)
- 
  
  User.update({'_id': req.params.id},{$set : req.body}, function(error, results){
   var email = req.body.email;
@@ -109,7 +131,6 @@ router.patch('/student/:id', async (req, res, next)=> {
      
       
   });
-  
 });
 
 module.exports = router;
