@@ -43,8 +43,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th> isActive </th>
-                      <th> Review Test </th>
-                      <th> Test Results </th>
+                      <th> Test Status </th>
                       <th> Actions </th>
                      </tr>
                   </thead>
@@ -55,8 +54,7 @@
                       <td>   {{human.email}} </td>
                       <td> <mat-slide-toggle [checked]="human.isActive" (change)="onStatusChange($event,human)"> </mat-slide-toggle>
                            </td>
-                           <td>   review test </td>
-                           <td>   test result </td>
+                           <td><button class="btn btn-info" (click)="openReviewTestDialog(human)" [appReviewTest]="human.status">{{human.status}}</button></td>
                       <td> <i class="fas fa-trash" (click)="onDelete(human)"> </i> &nbsp;
                            <i class="far fa-edit"></i>  &nbsp;
                       </td>

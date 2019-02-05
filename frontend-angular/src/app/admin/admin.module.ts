@@ -13,6 +13,8 @@ import { StudentDialogComponent } from './users/student-dialog/student-dialog.co
 
 import { AlertModule } from 'ngx-alerts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ReviewTestDialogComponent } from './users/review-test-dialog/review-test-dialog.component';
+import { ReviewTestDirective } from './users/review-test-dialog/review-test.directive';
 
 const routes: Routes = [
   { path: '', component: AdminComponent},
@@ -21,7 +23,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent, StudentDialogComponent],
+  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent, StudentDialogComponent, ReviewTestDialogComponent, ReviewTestDirective],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -29,8 +31,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     AlertModule,
-    BrowserAnimationsModule
-  ]
+    BrowserAnimationsModule,
+    ReviewTestDirective
+  ],
+  providers: []
 })
 export class AdminModule { }
 

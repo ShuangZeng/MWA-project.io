@@ -5,6 +5,7 @@ import { Subscriber, Subscription } from 'rxjs';
 import { AlertService } from 'ngx-alerts';
 import { StaffDialogComponent } from './staff-dialog/staff-dialog.component'
 import { StudentDialogComponent } from './student-dialog/student-dialog.component';
+import { ReviewTestDialogComponent } from './review-test-dialog/review-test-dialog.component';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -105,6 +106,26 @@ export class UsersComponent implements OnInit {
       }
     );
 
+  }
+
+  openReviewTestDialog(studentData){
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+         dialogConfig.data = studentData
+
+      this.dialogRef = this.dialog.open(ReviewTestDialogComponent, dialogConfig);
+
+    this.dialogRef.afterClosed().subscribe(
+      (data) => {
+        if (data) {
+          console.log(data)
+ 
+        }
+      }
+    );
   }
 
 }

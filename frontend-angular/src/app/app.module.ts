@@ -24,12 +24,18 @@ import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './webService/token-interceptor.service';
 import { StudentComponent } from './student/student.component';
+import { CommunicatorService } from './webService/communicator.service';
+
 
 import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component';
 import { StudentDialogComponent } from './admin/users/student-dialog/student-dialog.component'
 
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
 import { StudentService } from './webService/staff.service';
+import { ReviewTestDirective } from './admin/users/review-test-dialog/review-test.directive';
+import { ReviewTestDialogComponent } from './admin/users/review-test-dialog/review-test-dialog.component';
+
+
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
   {path: '', component: LoginPageComponent},
@@ -57,7 +63,9 @@ const routes: Routes = [
     StaffDialogComponent,
     StudentDialogComponent,
     StudentComponent,
-    NoPageFoundComponent
+    NoPageFoundComponent,
+    ReviewTestDirective,
+    ReviewTestDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,12 +81,14 @@ const routes: Routes = [
 
   ],
 
-  providers: [StudentService,BLockPassGuardFlatService, {
+  providers: [StudentService,
+    BLockPassGuardFlatService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }],
+  },
+  CommunicatorService],
   bootstrap: [AppComponent],
-  entryComponents: [StaffDialogComponent,StudentDialogComponent]
+  entryComponents: [StaffDialogComponent,StudentDialogComponent,ReviewTestDialogComponent]
 })
 export class AppModule { }
