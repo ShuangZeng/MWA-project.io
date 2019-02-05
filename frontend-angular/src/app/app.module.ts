@@ -64,7 +64,7 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     AceEditorModule,
-    MatButtonModule, MatCheckboxModule , MatTabsModule, MatFormFieldModule,, MatCheckboxModule,MatTabsModule,MatFormFieldModule,MatSlideToggleModule,
+    MatButtonModule, MatCheckboxModule , MatTabsModule, MatFormFieldModule,MatSlideToggleModule,
     MatDialogModule,MatInputModule, MatSelectModule,MatIconModule,
      AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
 

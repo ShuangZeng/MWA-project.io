@@ -31,5 +31,36 @@
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Student"> Content 2 </mat-tab>
+  <mat-tab label="Student">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div> <i class="sign fa fa-plus-square fa-2x" aria-hidden="true" (click)="openStaffDialog()"></i> </div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th> isActive </th>
+                      <th> Actions </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let worker of staff; let num = index">
+                      <td> {{num+1}}  </td>
+                      <td>  {{worker.name}} </td>
+                      <td>   {{worker.email}} </td>
+                      <td> <mat-slide-toggle [checked]="worker.isActive" (change)="onStatusChange($event,worker)"> </mat-slide-toggle>
+                           </td>
+                      <td> <i class="fas fa-trash" (click)="onDelete(worker)"> </i> &nbsp;
+                           <i class="far fa-edit"></i>  &nbsp;
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+         </mat-tab>
 </mat-tab-group>
