@@ -47,6 +47,7 @@ export class LoginPageComponent {
       }else{
         this.alertService.warning(data.message);
       }
+      
     })
   }
 
