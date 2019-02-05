@@ -69,8 +69,9 @@ router.post('/', async (req, res, next)=> {
   
 });
 
-router.delete('/:id',auth, admin, async (req, res, next)=> {
-  const results = await User.findByIdAndRemove(req.param.id);
+router.delete('/:id',auth, async (req, res, next)=> {
+  const results = await User.findByIdAndRemove(req.params.id);
+ 
   res.json({status:200, message: results});
 });
 
@@ -81,9 +82,8 @@ router.patch('/:id', async (req, res, next)=> {
   res.json({status:200, message: results});
 });
 
-router.patch('/:id', async (req, res, next)=> {
+router.patch('/student/:id', async (req, res, next)=> {
    ///for testing (works-- now need to pass value from Angula app)
- 
  
  User.update({'_id': req.params.id},{$set : req.body}, function(error, results){
   var email = req.body.email;
@@ -123,7 +123,6 @@ router.patch('/:id', async (req, res, next)=> {
      
       
   });
-
 });
 
 module.exports = router;
