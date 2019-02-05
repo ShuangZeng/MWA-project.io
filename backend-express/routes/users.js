@@ -65,7 +65,7 @@ router.delete('/',auth, async (req, res, next)=> {
   res.json(results);
 });
 
-router.patch('/:id', async (req, res, next)=> {
+router.patch('/student/:id', async (req, res, next)=> {
    ///for testing (works-- now need to pass value from Angula app)
  
  
