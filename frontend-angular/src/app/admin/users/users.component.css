@@ -18,3 +18,11 @@ width: 90%;
 .fa-plus-square:before {
     margin-right: 12px;
 }
+
+i.fas.fa-trash:hover{
+    color:red;
+}
+
+i.far.fa-edit:hover{
+    color:red;
+}
