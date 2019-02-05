@@ -47,7 +47,7 @@ router.post('/', async (req, res, next)=> {
   })
 
   if(user){
-    return res.status(400).json("User alredy Registerd");
+    return res.json({status: 400, message:"User alredy Registerd"});
   };
 
   const tmp = req.body
@@ -56,16 +56,21 @@ router.post('/', async (req, res, next)=> {
    
   if (req.body.isStudent === true){
     record = await record.save(); 
-    res.json(record);
+    return res.json({status: 200, record: record});
   }
 
 
-  const salt = await bcrypt.genSalt(10);
-  record.password = await bcrypt.hash(record.password, salt);
-  record = await record.save(); 
+  try {
+    const salt = await bcrypt.genSalt(10);
+    record.password = await bcrypt.hash(record.password, salt);
+    record = await record.save(); 
+  } catch (e) {
+    console.log('Error Occured - post-users api', e)
+  }
+
 
   const token =  record.generateAuthToken();
-  res.header("x-auth-token", token).json(record);
+  res.header("x-auth-token", token).json({status: 200, record: record});
 
   
 });
