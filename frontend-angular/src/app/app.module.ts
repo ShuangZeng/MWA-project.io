@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 //alert module libs
 import { AlertModule } from 'ngx-alerts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component'
@@ -18,7 +19,6 @@ import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth
   
 import { UsersComponent } from './admin/users/users.component';
 import { QuestionsComponent } from './admin/questions/questions.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatTabsModule,MatSlideToggleModule} from '@angular/material';
 
 import { BLockPassGuardFlatService } from './webService/b-lock-pass-guard--flat.service'

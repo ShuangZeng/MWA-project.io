@@ -2,8 +2,8 @@ import { Component, OnInit, Pipe} from '@angular/core';
 import { WebService } from '../../webService/web.service';
 import { MatSlideToggleChange, MatSlideToggle } from '@angular/material';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { AlertService } from 'ngx-alerts';
 import { Subscriber, Subscription } from 'rxjs';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-users',
@@ -32,32 +32,33 @@ private subscription: Subscription;
   return element.role === 'student'
   }
 
-  onStatusChange(ob: MatSlideToggleChange, worker) {
+  onStatusChange(ob: MatSlideToggleChange, obj) {
     if (ob.checked){
-      this.subscription = this.webService.updateIsActivestatusByUserId(worker._id,true).subscribe((res:any)=>{
+      this.subscription = this.webService.updateIsActivestatusByUserId(obj._id,true).subscribe((res:any)=>{
         if(res.status === 200){
-        this.alertService.warning(`${worker.name} is now active`)
+        this.alertService.warning(`${obj.name} is now active`)
         }
       })
     }else{
-      this.subscription =  this.webService.updateIsActivestatusByUserId(worker._id,false).subscribe((res:any)=>{
+      this.subscription =  this.webService.updateIsActivestatusByUserId(obj._id,false).subscribe((res:any)=>{
         if(res.status === 200){
-          this.alertService.warning(`${worker.name} is now inactive`)
+          this.alertService.warning(`${obj.name} is now inactive`)
         }
       })
     
     }
   }
 
-  onDelete(worker){
+  onDelete(obj){
     if (confirm("Are you sure")) {
-      this.subscription =  this.webService.findByIdAndRemove(worker._id).subscribe(
-        res => {this.alertService.info(`${worker.name} has been removed`)}
+      this.subscription =  this.webService.findByIdAndRemove(obj._id).subscribe(
+        res => {
+          this.alertService.info(`${obj.name} has been removed`)}
       )
-      console.log ("You pressed OK!");
     } else {
       console.log("You pressed Cancel!");
     }
+    this.ngOnInit();
   }
 
   onEdit(){
