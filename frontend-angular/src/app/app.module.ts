@@ -25,7 +25,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './webService/token-interceptor.service';
 import { StudentComponent } from './student/student.component';
 
-import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component'
+import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component';
+import { StudentDialogComponent } from './admin/users/student-dialog/student-dialog.component'
+
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
 import { StudentService } from './webService/staff.service';
 const routes: Routes = [
@@ -53,6 +55,7 @@ const routes: Routes = [
     QuestionsComponent,
     NoPageFoundComponent,
     StaffDialogComponent,
+    StudentDialogComponent,
     StudentComponent,
     NoPageFoundComponent
   ],
@@ -76,6 +79,6 @@ const routes: Routes = [
     multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents: [StaffDialogComponent]
+  entryComponents: [StaffDialogComponent,StudentDialogComponent]
 })
 export class AppModule { }

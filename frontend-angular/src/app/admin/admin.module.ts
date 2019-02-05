@@ -9,6 +9,10 @@ import { QuestionsComponent } from './questions/questions.component'
 
 import { AdminComponent }from './admin.component';
 import { StaffDialogComponent } from './users/staff-dialog/staff-dialog.component';
+import { StudentDialogComponent } from './users/student-dialog/student-dialog.component';
+
+import { AlertModule } from 'ngx-alerts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', component: AdminComponent},
@@ -17,13 +21,15 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent],
+  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent, StudentDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule,
+    BrowserAnimationsModule
   ]
 })
 export class AdminModule { }
