@@ -13,6 +13,7 @@ var cors = require('cors')
 var app = express();
 require('dotenv').config({path: path.join(__dirname, '.env')});
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
