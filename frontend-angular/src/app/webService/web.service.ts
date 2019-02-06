@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http'
+import { MAT_AUTOCOMPLETE_DEFAULT_OPTIONS } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +35,30 @@ export class WebService {
     return this.http.post('http://localhost:3000/users/',obj);
   }
 
+  updateStudentGrade(id,_grade){
+    let obj;
+    if(_grade < 50){
+     obj = {grade: _grade,status: 'Fail'}
+    }else{
+       obj = {grade: _grade,status: 'Pass'}
+    }
+    return this.http.patch(`http://localhost:3000/users/${id}`,obj)
+
+  }
+
+  addNewQuestion(obj){
+    return this.http.post('http://localhost:3000/questions/',obj);
+  }
+
+  getAllQuestions(){
+    return this.http.get('http://localhost:3000/questions/')
+  }
+
+  deleteQuestionById(questionId){
+    return this.http.delete(`http://localhost:3000/questions/${questionId}`)
+  }
+
+  updateQuestion(questionId,obj){
+    return this.http.patch(`http://localhost:3000/questions/${questionId}`,obj)
+  }
 }

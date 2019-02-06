@@ -15,6 +15,8 @@ import { AlertModule } from 'ngx-alerts';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ReviewTestDialogComponent } from './users/review-test-dialog/review-test-dialog.component';
 import { ReviewTestDirective } from './users/review-test-dialog/review-test.directive';
+import { QuestionsTagsPipe } from './questions/questions-tags.pipe';
+import { AddQuestionDialogComponent } from './questions/add-question-dialog/add-question-dialog.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent},
@@ -23,7 +25,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent, StudentDialogComponent, ReviewTestDialogComponent, ReviewTestDirective],
+  declarations: [UsersComponent, QuestionsComponent,StaffDialogComponent, StudentDialogComponent, ReviewTestDialogComponent, ReviewTestDirective, QuestionsTagsPipe, AddQuestionDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
@@ -32,7 +34,7 @@ const routes: Routes = [
     HttpClientModule,
     AlertModule,
     BrowserAnimationsModule,
-    ReviewTestDirective
+    ReviewTestDirective,
   ],
   providers: []
 })

@@ -32,13 +32,15 @@ export class StudentDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-
   save() {
     const obj = this.myForm.value;
     obj.addDialog.isStudent = this.isStudent;
     obj.addDialog.role = this.role;
     obj.addDialog.status = this.status;
     obj.addDialog.isActive = this.isActive;
+    obj.addDialog.qustions = [];
+    obj.addDialog.testDuration = "";
+    obj.addDialog.grade = "";
     this.webService.addStaffMember(obj).subscribe((res:any)=>{
       if(res.status == 200){
       this.dialogRef.close(obj.addDialog);
