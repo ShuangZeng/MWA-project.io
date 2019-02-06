@@ -13,11 +13,10 @@ export class StudentComponent {
   numOfQuestion: number;
   options:any = {maxLines: 1000, printMargin: false};
   
-  
+
     onChange(code) {
         console.log("new code", code);
     }
-
   constructor(private router:Router,communicator: CommunicatorService) { 
     this.studentData = communicator.serviceData;
     console.log(this.studentData)

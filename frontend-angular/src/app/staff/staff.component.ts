@@ -17,8 +17,7 @@ export class StaffComponent implements OnInit {
   ngOnInit() {
     this.staffService.getUsers()
     .subscribe((response) => this.users = response,
-    (error) => console.log(error) );
-    
+    (error) => console.log(error) ); 
   }
   
   sendMail(user){
