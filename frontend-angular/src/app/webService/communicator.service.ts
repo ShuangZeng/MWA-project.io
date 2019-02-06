@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommunicatorService {
-  serviceData: string = null;
+  serviceData: any = null;
 
   constructor() { }
 
-  get data():string { 
+  get data():any { 
     return this.serviceData; 
   } 
-  set data(value: string) { 
+  set data(value: any) { 
     this.serviceData = value; 
   } 
 }

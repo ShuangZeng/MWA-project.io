@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentAuthService } from '../webService/studentAuth-service';
+import { WebService } from '../webService/web.service';
 
 @Component({
   selector: 'app-passwordless-auth',
@@ -11,12 +11,9 @@ export class PasswordlessAuthComponent implements OnInit {
 usertoken :string
 userid :string
 private sub : any
-  constructor(private route: ActivatedRoute, private studentAuthService:StudentAuthService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private studentAuthService:WebService, private router: Router) { }
 
   ngOnInit() {
-
-
-   
 
   }
 
