@@ -36,11 +36,11 @@ export class LoginPageComponent {
     const response = this.webservice.login(this.getEmail(),this.getPassword())
     response.subscribe((data:any)=>{
       if (data.status === 200){
-        localStorage.setItem("usertoken", JSON.stringify(data.message))
+        localStorage.setItem("usertoken", data.message)
         console.log(data)
         this.dataService.data = data.user;
         if (data.user.role === 'admin'){
-          this.router.navigate(['/','admin']);  
+          this.router.navigate(['/','admin','users']);  
         }if(data.user.role === 'staff'){
             this.router.navigate(['/','staff'])
         } 
