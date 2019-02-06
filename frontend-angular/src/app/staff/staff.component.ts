@@ -20,6 +20,7 @@ export class StaffComponent implements OnInit {
     (error) => console.log(error) ); 
   }
   
+
   sendMail(user){
     console.log(user)
     this.staffService.updateUser(user)

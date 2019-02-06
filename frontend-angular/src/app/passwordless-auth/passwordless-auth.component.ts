@@ -17,6 +17,7 @@ private sub : any
   ngOnInit() {
   }
 
+
   startExam(){
     this.sub = this.route.params.subscribe(params => {
       this.usertoken = params['token']; // (+) converts string 'id' to a number
