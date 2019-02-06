@@ -13,6 +13,7 @@ export class StudentComponent {
   numOfQuestion: number;
   options:any = {maxLines: 1000, printMargin: false};
   
+<<<<<<< HEAD
 
 
     onChange(code) {
@@ -22,6 +23,15 @@ export class StudentComponent {
     this.studentData = communicator.serviceData;
     console.log(this.studentData)
 
+=======
+    onChange(code) {
+        console.log("new code", code);
+    }
+
+  constructor(private router:Router,communicator: CommunicatorService) { 
+    this.studentData = communicator.serviceData;
+    console.log(this.studentData)
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
 
   }
   
@@ -33,5 +43,9 @@ export class StudentComponent {
     setTimeout(function(){
       localStorage.removeItem('usertoken');
   }, 20000 * 60)}
+<<<<<<< HEAD
+=======
+
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
 
 }

@@ -63,6 +63,7 @@ export class WebService {
   }
   authStudent(data) {
     return this.http.post('http://localhost:3000/student/auth', data)
+<<<<<<< HEAD
   }
   getUsers() {
     // let token = JSON.parse(localStorage.getItem('usertoken'));
@@ -70,6 +71,15 @@ export class WebService {
     ///**********/ using TokenInterceptorService
     return this.http.get('http://localhost:3000/users/role/student')
   }
+=======
+  }
+  getUsers() {
+    // let token = JSON.parse(localStorage.getItem('usertoken'));
+    // const headers = new HttpHeaders( {"x-auth-token":token})
+    ///**********/ using TokenInterceptorService
+    return this.http.get('http://localhost:3000/users/role/student')
+  }
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
 
   updateUser(user) {
     let tmp = user;
@@ -77,8 +87,11 @@ export class WebService {
     return this.http.patch(`http://localhost:3000/users/student/${tmp._id}`, tmp)
   }
 
+<<<<<<< HEAD
   getRandomQuestions(){
     return this.http.get('')
   }
 
+=======
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
 }
