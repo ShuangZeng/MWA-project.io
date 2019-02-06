@@ -71,7 +71,6 @@ export class WebService {
     return this.http.get('http://localhost:3000/users/role/student')
   }
 
-  
   updateUser(user) {
     let tmp = user;
     tmp.status = 'sent'

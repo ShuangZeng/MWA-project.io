@@ -34,5 +34,4 @@ export class StudentComponent {
       localStorage.removeItem('usertoken');
   }, 20000 * 60)}
 
-
 }
