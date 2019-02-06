@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebService } from '../webService/web.service';
@@ -44,3 +45,5 @@ private sub : any
   }
 
 }
+=======
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8

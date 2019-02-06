@@ -24,7 +24,7 @@ export class StudentComponent {
 
 
   }
-
+  
   ngOnInit() {
     const token = JSON.parse(localStorage.getItem('usertoken'));
     if(!token){
