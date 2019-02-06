@@ -3,36 +3,23 @@ import { Router } from '@angular/router';
 
 import { TokenInterceptorService } from '../webService/token-interceptor.service';
 import { CommunicatorService } from '../webService/communicator.service';
+import { WebService } from '../webService/web.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent {
+export class StudentComponent implements OnInit{
   studentData:any;
   numOfQuestion: number;
   options:any = {maxLines: 1000, printMargin: false};
-  
-<<<<<<< HEAD
-
-
-    onChange(code) {
-        console.log("new code", code);
-    }
-  constructor(private router:Router,communicator: CommunicatorService) { 
+  subscription: Subscription;
+  constructor(private router:Router,communicator: CommunicatorService,private webService: WebService) { 
     this.studentData = communicator.serviceData;
     console.log(this.studentData)
 
-=======
-    onChange(code) {
-        console.log("new code", code);
-    }
-
-  constructor(private router:Router,communicator: CommunicatorService) { 
-    this.studentData = communicator.serviceData;
-    console.log(this.studentData)
->>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
-
+ 
   }
   
   ngOnInit() {
@@ -42,10 +29,18 @@ export class StudentComponent {
     }
     setTimeout(function(){
       localStorage.removeItem('usertoken');
-  }, 20000 * 60)}
-<<<<<<< HEAD
-=======
+  }, 20000 * 60)
 
->>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
+  this.subscription =  this.webService.getRandomQuestions().subscribe((res)=>{
+    
+  })
+  }
+  onChange(code) {
+    console.log("new code", code);
+}
+
+ngOnDestroy() {
+  this.subscription.unsubscribe();
+}
 
 }
