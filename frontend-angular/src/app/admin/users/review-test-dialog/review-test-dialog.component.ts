@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatTabChangeEvent } from '@angular/mater
 import { WebService } from '../../../webService/web.service';
 import { AlertService } from 'ngx-alerts';
 import { StaffDialogComponent } from '../staff-dialog/staff-dialog.component';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-review-test-dialog',
@@ -18,12 +19,20 @@ export class ReviewTestDialogComponent implements OnInit {
   answerIndex: number = -1;
   displayedAnswer: string;
   numOfAnswers: number = 0;
-  constructor(private alertService: AlertService, private dialogRef: MatDialogRef<StaffDialogComponent>, private webService: WebService, @Inject(MAT_DIALOG_DATA) data) {
+  myForm: FormGroup;
+  constructor(private fb: FormBuilder,private alertService: AlertService, private dialogRef: MatDialogRef<StaffDialogComponent>, private webService: WebService, @Inject(MAT_DIALOG_DATA) data) {
     this.studentData = data;
     this.questions = data.questions;
     this.displayedQuestion = this.getQuestion(this.tabIndex)
     this.numOfAnswers = this.questions.length;
     this.getNextAnswer(this.tabIndex);
+
+    this.myForm = fb.group({
+      'evaluation' : fb.group({
+        'grade': ['',Validators.compose([Validators.required, Validators.min(1),Validators.max(100)])],
+
+      }) 
+    })
 
   }
 
@@ -31,15 +40,17 @@ export class ReviewTestDialogComponent implements OnInit {
   }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent) {
+    if(tabChangeEvent.index != 3){
     this.displayedQuestion = this.getQuestion(tabChangeEvent.index)
     this.answerIndex = -1;
     this.getNextAnswer(tabChangeEvent.index)
+  }
     this.tabIndex = tabChangeEvent.index;
   }
 
   save() {
-    const obj = '' //this.myForm.value;
-    this.webService.addStaffMember(obj).subscribe((res: any) => {
+    const obj = this.myForm.get('evaluation').get('grade').value;
+    this.webService.updateStudentGrade(this.studentData._id,obj).subscribe((res: any) => {
       if (res.status == 200) {
         this.dialogRef.close(obj);
       } else {

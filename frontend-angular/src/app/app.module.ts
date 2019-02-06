@@ -14,10 +14,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AceEditorModule } from '../../node_modules/ng2-ace-editor';
 import { AdminComponent } from './admin/admin.component'
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
-import { StaffService } from './webService/staff.service';
-import { StudentAuthService } from './webService/studentAuth-service';
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
-
 
 import { UsersComponent } from './admin/users/users.component';
 import { QuestionsComponent } from './admin/questions/questions.component';
@@ -29,13 +26,14 @@ import { TokenInterceptorService } from './webService/token-interceptor.service'
 import { StudentComponent } from './student/student.component';
 import { CommunicatorService } from './webService/communicator.service';
 
-
 import { StaffDialogComponent } from './admin/users/staff-dialog/staff-dialog.component';
 import { StudentDialogComponent } from './admin/users/student-dialog/student-dialog.component'
 
+
 import { ReviewTestDirective } from './admin/users/review-test-dialog/review-test.directive';
 import { ReviewTestDialogComponent } from './admin/users/review-test-dialog/review-test-dialog.component';
-
+import { QuestionsTagsPipe } from './admin/questions/questions-tags.pipe';
+import { AddQuestionDialogComponent } from './admin/questions/add-question-dialog/add-question-dialog.component'
 
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
@@ -68,7 +66,9 @@ const routes: Routes = [
     StudentComponent,
     NoPageFoundComponent,
     ReviewTestDirective,
-    ReviewTestDialogComponent
+    ReviewTestDialogComponent,
+    AddQuestionDialogComponent,
+    QuestionsTagsPipe
   ],
   imports: [
     BrowserModule,
@@ -84,13 +84,14 @@ const routes: Routes = [
 
   ],
 
-  providers: [StaffService,StudentAuthService,BLockPassGuardFlatService, {
+  providers: [BLockPassGuardFlatService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
   },
   CommunicatorService],
   bootstrap: [AppComponent],
-  entryComponents: [StaffDialogComponent,StudentDialogComponent,ReviewTestDialogComponent]
+  entryComponents: [StaffDialogComponent,StudentDialogComponent,ReviewTestDialogComponent,AddQuestionDialogComponent],
+  exports: [QuestionsTagsPipe]
 })
 export class AppModule { }

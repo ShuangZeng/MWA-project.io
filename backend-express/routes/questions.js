@@ -11,7 +11,7 @@ const questions = mongoose.model('questions', questionSchema);
 
 router.get('/', auth, async (req, res, next) => {
   const results = await questions.find();
-  res.json(results);
+  res.json({status:200, message: results});
 });
 
 router.get('/:id', auth, admin, async (req, res, next) => {
@@ -35,13 +35,13 @@ router.post('/', auth, async (req, res, next) => {
   var record = new questions(tmp)
   record.save();
 
-  res.json('success');
+  res.json({status:200, message: "success"});
 });
 
-router.delete('/', auth, async (req, res, next) => {
-  const results = await questions.findByIdAndRemove(req.body);
+router.delete('/:id', auth, async (req, res, next) => {
+  const results = await questions.findByIdAndRemove(req.params.id);
 
-  res.json(results);
+  res.json({status:200, message: results});
 });
 
 router.patch('/:id', auth, async (req, res, next) => {
@@ -49,15 +49,14 @@ router.patch('/:id', auth, async (req, res, next) => {
     '_id': req.params.id
   }, {
     $set: req.body
-  });
+  },{upsert:true});
 
-  res.json(results);
+  res.json({status:200, message: results});
 });
 
 router.get('/test/random', async (req, res) => {
-
-  const results = await questions.find({});
-
+//re check on this one
+  const results = await questions.find({}).limit(3);
 
   res.json(results)
 

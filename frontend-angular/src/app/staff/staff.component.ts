@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {StaffService} from '../webService/staff.service'
 import { useAnimation } from '@angular/animations';
+import { WebService } from '../webService/web.service';
+
 
 @Component({
   selector: 'app-staff',
@@ -9,17 +10,17 @@ import { useAnimation } from '@angular/animations';
 })
 export class StaffComponent implements OnInit {
 
-  constructor(private staffService:StaffService) { }
+  constructor(private staffService:WebService) { }
   
   users :object
 
   ngOnInit() {
     this.staffService.getUsers()
     .subscribe((response) => this.users = response,
-    (error) => console.log(error) );
-    
+    (error) => console.log(error) ); 
   }
   
+
   sendMail(user){
     console.log(user)
     this.staffService.updateUser(user)

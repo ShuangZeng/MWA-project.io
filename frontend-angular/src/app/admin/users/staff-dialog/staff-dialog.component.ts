@@ -40,7 +40,8 @@ export class StaffDialogComponent implements OnInit {
         this.dialogRef.close(obj.addDialog);
         }else{
           this.alertService.danger(`Error Occured: ${obj.addDialog.email} - ${res.message}`)
-        }    }) 
+        }
+          }) 
  }
 
 close() {

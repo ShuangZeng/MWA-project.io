@@ -2,63 +2,50 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TokenInterceptorService } from '../webService/token-interceptor.service';
+import { CommunicatorService } from '../webService/communicator.service';
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent {
-  text:string = "";
-    options:any = {maxLines: 1000, printMargin: false};
+  studentData:any;
+  numOfQuestion: number;
+  options:any = {maxLines: 1000, printMargin: false};
+  
+<<<<<<< HEAD
+
 
     onChange(code) {
         console.log("new code", code);
     }
-//   private name: string;
-//   private token: string;
-//   // private time = 7200;
-//   constructor(private tokenService: TokenInterceptorService) {
-//   }
-// //   private p = document.getElementById('time');
-// //   private set = setInterval(function() {
-// //     time--;
-// //     p.innerHtml = time;
-// //     if(time === 0) {
-// //       p.innerHTML = "";
-// //       clearInterval(set);
-// //   }
-// // }, 1000);
-// ngOnInit() {
-//   this.token = this.tokenService.getToken();
-//   this.name = this.tokenService.getToken().charAt(2);
-// }
+  constructor(private router:Router,communicator: CommunicatorService) { 
+    this.studentData = communicator.serviceData;
+    console.log(this.studentData)
 
-  constructor(private router:Router) { }
+=======
+    onChange(code) {
+        console.log("new code", code);
+    }
 
+  constructor(private router:Router,communicator: CommunicatorService) { 
+    this.studentData = communicator.serviceData;
+    console.log(this.studentData)
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
+
+  }
+  
   ngOnInit() {
-    
-    let token = JSON.parse(localStorage.getItem('usertoken'));
+    const token = JSON.parse(localStorage.getItem('usertoken'));
     if(!token){
       this.router.navigate(['/','/']); 
     }
-
-    setTimeout( function(){
-
+    setTimeout(function(){
       localStorage.removeItem('usertoken');
+  }, 20000 * 60)}
+<<<<<<< HEAD
+=======
 
-  }, 20000 * 60)    }
-
-  
-// initStudent() {
-//   // initialize our items
-//   // return this._fb.group({
-//   //     session: ['', Validators.required],
-//   //     studentList: ['']
-//   // });
-// }
-
-// addStudent() {
-// // add students to the list
-// }
+>>>>>>> a7bd02288c05d351d3e9252c609e2fe98fe125e8
 
 }

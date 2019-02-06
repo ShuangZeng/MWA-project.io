@@ -64,16 +64,16 @@
     </mat-tab>
     <mat-tab label="Evaluate">
       <div class="container-fluid">
-          <!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
               <div formGroupName="evaluation">
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" formControlName="name" placeholder="username">
+                        <label for="grade">Grade</label>
+                        <input class="form-control" id="grade" formControlName="grade" placeholder="of 100" type="number" min="1" max="100">
                       </div>
               </div>
               </div>
-            </form> -->
+            </form>
       </div>
     </mat-tab>
   </mat-tab-group>
@@ -81,6 +81,6 @@
 
 <mat-dialog-actions>
   <button class="btn btn-warning" (click)="close()">Close</button> &nbsp;
-  <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid" (click)="save()">Save</button>
 </mat-dialog-actions>
 <ngx-alerts></ngx-alerts>

@@ -56,9 +56,14 @@ export class UsersComponent implements OnInit {
   onDelete(obj) {
     if (confirm("Are you sure")) {
       this.subscription = this.webService.findByIdAndRemove(obj._id).subscribe(
-        res => {
+      (res:any) => {
+          if(res.status == 200){
           this.alertService.info(`${obj.name} has been removed`)
           this.ngOnInit();
+          }else{
+            this.alertService.danger(`Error Occured: ${res.message}`)
+
+          }
         }
       )
     } else {
@@ -99,7 +104,6 @@ export class UsersComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
-          console.log(data)
           this.alertService.info(`${data.name} has been added`);
           this.ngOnInit();
         }
@@ -120,10 +124,10 @@ export class UsersComponent implements OnInit {
 
     this.dialogRef.afterClosed().subscribe(
       (data) => {
-        if (data) {
           console.log(data)
- 
-        }
+          this.alertService.info(`Grade has been updated`);
+          this.ngOnInit();
+        
       }
     );
   }
