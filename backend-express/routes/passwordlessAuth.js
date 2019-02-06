@@ -19,12 +19,12 @@ router.post("/auth", async (req, res) =>  {
            
             console.log("start")
             console.log(req.user)
-            User.update( {'_id':req.user._id}, {$set:{isActive:false}}, function(err, results){
+            User.update( {'_id':req.user._id}, {$set:{isActive:true}}, function(err, results){
                 console.log(results)
             });
-            res.status(200).json({message:user});
+            res.json({status:200, message:user});
         } catch (error) {
-            res.status(400).json("Invalid token.");
+            res.json({status:400,message: "Invalid token."});
         }
        
         

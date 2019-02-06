@@ -1,7 +1,18 @@
 
   <div><label id='time'>Time Left: {{time}}</label></div>
-  <div>Welcome:{{name}}</div>
-  <div><textarea disabled="disabled">{{questions}}</textarea></div>
+  <div>Welcome:{{studentData.name}}</div>
+  <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <dl>
+                    <dt>
+                        Description lists
+                    </dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+
   <div ace-editor
        [(text)]="text"
        [mode]="'sql'"
