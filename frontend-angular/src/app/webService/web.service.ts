@@ -82,6 +82,11 @@ export class WebService {
     return this.http.patch(`http://localhost:3000/users/student/${tmp._id}`, tmp)
   }
 
+  questioScreeshot(id,studentAns){
+console.log(studentAns)
+    return this.http.patch(`http://localhost:3000/users/student/answer/${id}`, studentAns)
+  }
+
  
 
 }

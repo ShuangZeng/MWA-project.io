@@ -88,9 +88,31 @@ router.patch('/:id', async (req, res, next)=> {
   res.json({status:200, message: results});
 });
 
+router.patch('/student/answer/:id', async (req, res, next)=> {
+  console.log(req.body)
+  console.log('server: '+ req.params.id)
+     await User.find({'_id': req.params.id, 'questions.question':req.body.question}, function(err,findResult){
+    if(findResult.length > 0){
+         User.update({'_id': req.params.id, 'questions.question':req.body.question},{$push: {"questions.$.answers":req.body.answer}},{upsert:true},function(err,ress){
+          res.json({status:200, message: ress});
+
+       });
+    }else{
+     User.update({'_id': req.params.id}, {$push: {"questions":{"question":req.body.question, "answers": [req.body.answer]}}},{upsert:true},function(err,ress){
+       res.json({status:200, message: ress});
+     });
+
+    }
+  //  console.log(results)
+
+  })
+
+
+
+});
+
 router.patch('/student/:id', async (req, res, next)=> {
    ///for testing (works-- now need to pass value from Angula app)
- 
  User.update({'_id': req.params.id},{$set : req.body}, function(error, results){
   var email = req.body.email;
   var name = req.body.name

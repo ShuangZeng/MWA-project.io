@@ -1,1 +1,7 @@
 backend-express/node_modules
+backend-express/.env
+.env
+.gitignore
+backend-express/.env
+README.md
+.gitignore
