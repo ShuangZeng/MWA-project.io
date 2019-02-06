@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ReviewTestDialogComponent implements OnInit {
   text: string = "";
   studentData: any;
-  questions: string;
+  questions: any;
   displayedQuestion: string;
   tabIndex: number = 0;
   answerIndex: number = -1;
@@ -24,7 +24,7 @@ export class ReviewTestDialogComponent implements OnInit {
     this.studentData = data;
     this.questions = data.questions;
     this.displayedQuestion = this.getQuestion(this.tabIndex)
-    this.numOfAnswers = this.questions.length;
+    this.numOfAnswers = this.questions[this.tabIndex].answers.length-1;
     this.getNextAnswer(this.tabIndex);
 
     this.myForm = fb.group({
@@ -43,6 +43,7 @@ export class ReviewTestDialogComponent implements OnInit {
     if(tabChangeEvent.index != 3){
     this.displayedQuestion = this.getQuestion(tabChangeEvent.index)
     this.answerIndex = -1;
+    this.numOfAnswers = this.questions[tabChangeEvent.index].answers.length-1;
     this.getNextAnswer(tabChangeEvent.index)
   }
     this.tabIndex = tabChangeEvent.index;
@@ -64,20 +65,24 @@ export class ReviewTestDialogComponent implements OnInit {
   }
 
   getQuestion(questionNumber) {
-    return Object.keys(this.questions[questionNumber])[0];
+    return this.questions[questionNumber].question;
   }
 
   getNextAnswer(forQuestionIndex = this.tabIndex) {
     if (this.answerIndex < this.numOfAnswers) {
-      const arr = Object.values(this.questions[forQuestionIndex])
-      const val = Object.values(arr)[0][++this.answerIndex]
+      console.log(this.numOfAnswers)
+      console.log(this.answerIndex)
+      console.log(this.answerIndex < this.numOfAnswers)
+
+      const arr = this.questions[forQuestionIndex].answers
+      const val = arr[++this.answerIndex]
       this.displayedAnswer = val;
     }
   }
   getPrevAnswer(forQuestionIndex=this.tabIndex) {
     if (this.answerIndex > 0) {
-      const arr = Object.values(this.questions[forQuestionIndex])
-      const val = Object.values(arr)[0][--this.answerIndex]
+      const arr = this.questions[forQuestionIndex].answers
+      const val = arr[--this.answerIndex]
       this.displayedAnswer = val
     }
   }

@@ -47,20 +47,19 @@ export class StudentComponent implements OnInit {
       this.currentQuestion =  this.questions[this.currentQuestionIndex];
     } 
   }
+
   
-  
+
   onChange(code) {
-     let questionObj = this.questions[this.currentQuestionIndex];
+    let questionObj = this.questions[this.currentQuestionIndex];
     let studentAns:Object={'question': questionObj.question, 'answer': code};
-    this.subscription = this.webService.questioScreeshot(this.studentData._id,studentAns).subscribe((res:any) => {
+    this.subscription = this.webService.questionScreeshot(this.studentData._id,studentAns).subscribe((res:any) => {
       console.log(res);
     })
-  }
+    }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-
 
 }
