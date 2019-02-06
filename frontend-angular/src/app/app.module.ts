@@ -34,6 +34,7 @@ import { ReviewTestDirective } from './admin/users/review-test-dialog/review-tes
 import { ReviewTestDialogComponent } from './admin/users/review-test-dialog/review-test-dialog.component';
 import { QuestionsTagsPipe } from './admin/questions/questions-tags.pipe';
 import { AddQuestionDialogComponent } from './admin/questions/add-question-dialog/add-question-dialog.component'
+import { TimerComponentComponent } from './timer-component/timer-component.component';
 
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
@@ -68,6 +69,7 @@ const routes: Routes = [
     ReviewTestDirective,
     ReviewTestDialogComponent,
     AddQuestionDialogComponent,
+    TimerComponentComponent,
     QuestionsTagsPipe
   ],
   imports: [

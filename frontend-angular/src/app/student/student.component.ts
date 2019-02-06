@@ -18,6 +18,7 @@ export class StudentComponent implements OnInit {
   questions: any;
   currentQuestionIndex: number = 0;
   currentQuestion:number = 0;
+  text:string = "";
   constructor(private router: Router, communicator: CommunicatorService, private webService: WebService) {
     this.studentData = communicator.serviceData;
     console.log(this.studentData);
@@ -43,14 +44,17 @@ export class StudentComponent implements OnInit {
 
 
   nextQuestion() {
-    if(++this.currentQuestionIndex <= this.numOfQuestion){
+    this.text = "";
+    if(++this.currentQuestionIndex < this.numOfQuestion){
       this.currentQuestion =  this.questions[this.currentQuestionIndex];
-    } 
+    }
   }
-  
-  
+
+
   onChange(code) {
+    console.log('qestionlist',this.questions);
      let questionObj = this.questions[this.currentQuestionIndex];
+     console.log('questionObj',questionObj)
     let studentAns:Object={'question': questionObj.question, 'answer': code};
     this.subscription = this.webService.questioScreeshot(this.studentData._id,studentAns).subscribe((res:any) => {
       console.log(res);

@@ -25,6 +25,7 @@ export class PasswordlessAuthComponent implements OnInit {
 
       this.studentAuthService.authStudent({ 'usertoken': this.usertoken }).
         subscribe((data: any) => {
+          console.log(data)
           if (data.status == 200) {
             localStorage.setItem('usertoken',this.usertoken);
             this.communicator.serviceData = data.message;

@@ -19,7 +19,7 @@ router.post("/auth", async (req, res) =>  {
            
             console.log("start")
             console.log(req.user)
-            User.update( {'_id':req.user._id}, {$set:{isActive:true}}, function(err, results){
+            User.update( {'_id':req.user._id}, {$set:{isActive:false}}, function(err, results){
                 console.log(results)
             });
             res.json({status:200, message:user});
