@@ -9,7 +9,7 @@ const questionSchema = new mongoose.Schema({}, {
 const questions = mongoose.model('questions', questionSchema);
 
 
-router.get('/', auth, admin, async (req, res, next) => {
+router.get('/', auth, async (req, res, next) => {
   const results = await questions.find();
   res.json(results);
 });
@@ -22,14 +22,14 @@ router.get('/:id', auth, admin, async (req, res, next) => {
   res.json(results);
 });
 
-router.get('/tags/:tags', auth, admin, async (req, res, next) => {
+router.get('/tags/:tags', auth, async (req, res, next) => {
   const results = await questions.find({}).where('tags').in([req.params.tags]);
 
   res.json(results);
 });
 
 
-router.post('/', auth, admin, async (req, res, next) => {
+router.post('/', auth, async (req, res, next) => {
   const tmp = req.body
   tmp.dateCreated = new Date();
   var record = new questions(tmp)
@@ -38,13 +38,13 @@ router.post('/', auth, admin, async (req, res, next) => {
   res.json('success');
 });
 
-router.delete('/', auth, admin, async (req, res, next) => {
+router.delete('/', auth, async (req, res, next) => {
   const results = await questions.findByIdAndRemove(req.body);
 
   res.json(results);
 });
 
-router.patch('/:id', auth, admin, async (req, res, next) => {
+router.patch('/:id', auth, async (req, res, next) => {
   const results = await questions.update({
     '_id': req.params.id
   }, {
@@ -56,7 +56,8 @@ router.patch('/:id', auth, admin, async (req, res, next) => {
 
 router.get('/test/random', async (req, res) => {
 
-  const results = await questions.find({}).limit(3);
+  const results = await questions.find({});
+
 
   res.json(results)
 
