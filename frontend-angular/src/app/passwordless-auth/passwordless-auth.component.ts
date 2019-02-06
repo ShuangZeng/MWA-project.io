@@ -13,6 +13,7 @@ userid :string
 private sub : any
   constructor(private route: ActivatedRoute, private studentAuthService:WebService, private router: Router) { }
 
+  
   ngOnInit() {
 
   }

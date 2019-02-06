@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { useAnimation } from '@angular/animations';
 import { WebService } from '../webService/web.service';
 
+
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',

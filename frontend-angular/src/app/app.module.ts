@@ -14,7 +14,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AceEditorModule } from '../../node_modules/ng2-ace-editor';
 import { AdminComponent } from './admin/admin.component'
 import { NoPageFoundComponent } from './no-page-found/no-page-found.component'
-import { StudentAuthService } from './webService/studentAuth-service';
 import { PasswordlessAuthComponent } from './passwordless-auth/passwordless-auth.component';
 
 
@@ -36,7 +35,6 @@ import { ReviewTestDirective } from './admin/users/review-test-dialog/review-tes
 import { ReviewTestDialogComponent } from './admin/users/review-test-dialog/review-test-dialog.component';
 import { QuestionsTagsPipe } from './admin/questions/questions-tags.pipe';
 import { AddQuestionDialogComponent } from './admin/questions/add-question-dialog/add-question-dialog.component'
-import { StaffService } from './webService/staff.service';
 
 const routes: Routes = [
   {path: 'homex', component: AppComponent },
@@ -87,7 +85,7 @@ const routes: Routes = [
 
   ],
 
-  providers: [StaffService,StudentAuthService,BLockPassGuardFlatService, {
+  providers: [BLockPassGuardFlatService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
