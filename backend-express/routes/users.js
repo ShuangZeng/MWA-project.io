@@ -105,9 +105,7 @@ router.patch('/student/answer/:id', async (req, res, next)=> {
     }
   //  console.log(results)
 
-  })
-
-
+  });
 
 });
 

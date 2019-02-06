@@ -48,6 +48,7 @@ export class StudentComponent implements OnInit {
     } 
   }
   
+  
   onChange(code) {
      let questionObj = this.questions[this.currentQuestionIndex];
     let studentAns:Object={'question': questionObj.question, 'answer': code};
