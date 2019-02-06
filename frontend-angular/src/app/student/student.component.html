@@ -1,6 +1,6 @@
 
   <div><label id='time'>Time Left: {{time}}</label></div>
-  <div>Welcome:{{studentData.name}}</div>
+  <div>Welcome: {{studentData.name}}</div>
   <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -9,6 +9,7 @@
 
                    
 
+                      Question: {{currentQuestion.question}}
                     </dt>
                 </dl>
             </div>
@@ -25,4 +26,10 @@
        (textChanged)="onChange($event)"
        style="min-height: 200px; width:100%; overflow: auto;"></div>
   <div><button>Submit</button></div>
+
+       <div class="container-fluid">
+            <button (click)="nextQuestion()">Next</button>
+                            <button *ngIf="currentQuestionIndex==numOfQuestion" >Submit</button>
+        </div>
+  
 

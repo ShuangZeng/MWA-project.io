@@ -10,37 +10,50 @@ import { Subscription } from 'rxjs';
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.css']
 })
-export class StudentComponent implements OnInit{
-  studentData:any;
+export class StudentComponent implements OnInit {
+  studentData: any;
   numOfQuestion: number;
-  options:any = {maxLines: 1000, printMargin: false};
+  options: any = { maxLines: 1000, printMargin: false };
   subscription: Subscription;
-  constructor(private router:Router,communicator: CommunicatorService,private webService: WebService) { 
+  questions: any;
+  currentQuestionIndex: number = 0;
+  currentQuestion:number = 0;
+  constructor(private router: Router, communicator: CommunicatorService, private webService: WebService) {
     this.studentData = communicator.serviceData;
-    console.log(this.studentData)
+    console.log(this.studentData);
 
- 
   }
-  
+
   ngOnInit() {
-    const token = JSON.parse(localStorage.getItem('usertoken'));
-    if(!token){
-      this.router.navigate(['/','/']); 
+    const token = localStorage.getItem('usertoken');
+    if (!token) {
+      this.router.navigate(['/', '/']);
     }
-    setTimeout(function(){
+    setTimeout(function () {
       localStorage.removeItem('usertoken');
-  }, 20000 * 60)
+    }, 20000 * 60)
 
-  this.subscription =  this.webService.getRandomQuestions().subscribe((res)=>{
-    
-  })
+    this.subscription = this.webService.getRandomQuestions().subscribe((res:any) => {
+      console.log(res);
+      this.questions = res;
+      this.numOfQuestion = res.length;
+      this.currentQuestion = this.questions[this.currentQuestionIndex];
+    })
   }
+
+
+  nextQuestion() {
+    if(++this.currentQuestionIndex <= this.numOfQuestion){
+      this.currentQuestion =  this.questions[this.currentQuestionIndex];
+    } 
+  }
+
   onChange(code) {
     console.log("new code", code);
-}
+  }
 
-ngOnDestroy() {
-  this.subscription.unsubscribe();
-}
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 }
