@@ -1,3 +1,4 @@
+<div class="container-fluid" *ngIf="currentQuestionIndex != numOfQuestion">
 <div>
   <app-timer></app-timer>
 </div>
@@ -18,10 +19,14 @@
     </div><hr/>
 
        <div class="container-fluid">
-        <button class="btn btn-primary pull-right" (click)="nextQuestion()">Next</button><hr/><br/>
-        <button class="btn btn-primary pull-right" *ngIf="currentQuestionIndex==numOfQuestion" >Submit</button>
+        <button class="btn btn-primary pull-right" (click)="nextQuestion()" *ngIf="currentQuestionIndex!=numOfQuestion-1">Next</button><hr/><br/>
+        <button class="btn btn-primary pull-right"  (click)="onSubmit()" *ngIf="currentQuestionIndex==numOfQuestion-1" >Submit</button>
         </div>
       </div>
     </div>
+    </div>
+</div>
+    <div class="container-fluid" *ngIf = "currentQuestionIndex==numOfQuestion">
+          <h2>Thank you! Good Luck!</h2>
     </div>
 

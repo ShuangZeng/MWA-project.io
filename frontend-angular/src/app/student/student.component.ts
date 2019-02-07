@@ -61,6 +61,10 @@ export class StudentComponent implements OnInit {
     })
     }
 
+    onSubmit(){
+      ++this.currentQuestionIndex ;
+    }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
